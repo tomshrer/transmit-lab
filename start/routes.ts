@@ -8,5 +8,10 @@
 */
 
 import router from '@adonisjs/core/services/router'
-router.on('/').renderInertia('home')
+import transmit from '@adonisjs/transmit/services/main'
+const ChatController = () => import('#controllers/chat_controller')
 
+transmit.registerRoutes()
+
+router.get('/', [ChatController, 'index'])
+router.post('/send', [ChatController, 'send'])
